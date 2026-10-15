@@ -1,5 +1,5 @@
 function Chat() {
-  return <h1>dd</h1>;
+  return <h1></h1>;
 }
 
 export default Chat;
