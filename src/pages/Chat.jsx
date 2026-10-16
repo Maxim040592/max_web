@@ -9,8 +9,6 @@ function Chat() {
   const [messages, setMessages] = useState([]);
   const [inputText, setInputText] = useState("");
 
-  // Безопасно достаем ключи: если credentials равен null, берем пустой объект {},
-  // чтобы деструктуризация не вызывала ошибку TypeError
   const { idInstance, apiToken } = credentials || {};
 
   // Эффект Long Polling
@@ -121,16 +119,6 @@ function Chat() {
   };
 
   return (
-    // <>
-    //   <button
-    //     onClick={sendMessage}
-    //     class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-300 transition"
-    //   >
-    //     Отправить
-    //   </button>
-
-    //   <p>{messages}</p>
-    // </>
     <div class="flex h-screen bg-[#f0f2f5] text-gray-800 font-sans">
       {/* ЛЕВАЯ ПАНЕЛЬ: Создание чата */}
       <div class="w-1/3 bg-white border-r border-gray-300 flex flex-col h-full">
