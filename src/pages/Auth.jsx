@@ -1,5 +1,3 @@
-function Auth() {
-  return <div></div>;
-}
+function Auth() {}
 
 export default Auth;
