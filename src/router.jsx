@@ -1,32 +1,5 @@
-// import { createBrowserRouter, RouterProvider } from "react-router";
-// import Auth from "./pages/Auth";
-// import Chat from "./pages/Chat";
-
-// const router = createBrowserRouter([
-//   {
-//     path: "/",
-//     element: <Chat />,
-//   },
-
-//   // ❗ Открытые маршруты
-//   {
-//     path: "/login",
-//     element: <Auth onAuthSuccess={(keys) => setCredentials(keys)} />,
-//   },
-// ]);
-
-// function Router() {
-//   return <RouterProvider router={router} />;
-// }
-
-// export default Router;
 import { useState } from "react";
-import {
-  createBrowserRouter,
-  RouterProvider,
-  Outlet,
-  Navigate,
-} from "react-router-dom"; // или "react-router"
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom"; // или "react-router"
 import Auth from "./pages/Auth";
 import Chat from "./pages/Chat";
 
@@ -45,11 +18,11 @@ const router = createBrowserRouter([
     element: <AppLayout />, // Главная оболочка
     children: [
       {
-        path: "",
+        index: true,
         element: <Chat />,
       },
       {
-        path: "login",
+        path: "/login",
         element: <Auth />,
       },
     ],
