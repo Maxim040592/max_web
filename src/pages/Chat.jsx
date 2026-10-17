@@ -1,6 +1,7 @@
 import { Navigate, useOutletContext } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import Sidebar from "../components/Sidebar";
 function Chat() {
   //Сначала объявляем ВСЕ хуки подряд
   const { credentials, setCredentials } = useOutletContext();
@@ -63,7 +64,7 @@ function Chat() {
         }
       } catch (error) {
         if (error.response && error.response.status === 408) {
-          console.log("Таймаут Long Polling, ожидаем...");
+          console.log("Таймаут длинный опрос, ожидаем...");
         } else {
           console.error("Ошибка уведомлений:", error);
         }
@@ -119,45 +120,12 @@ function Chat() {
   };
 
   return (
-    <div class="flex h-screen bg-[#f0f2f5] text-gray-800 font-sans">
-      {/* ЛЕВАЯ ПАНЕЛЬ: Создание чата */}
-      <div class="w-1/3 bg-white border-r border-gray-300 flex flex-col h-full">
-        <div class="p-4 bg-[#f0f2f5] border-b border-gray-300 font-bold text-lg text-emerald-700">
-          MAX Chat / GREEN-API
-        </div>
-        <button
-          onClick={handleLogout}
-          class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition"
-        >
-          Выйти
-        </button>
-
-        {/* Форма создания нового чата */}
-        <div class="p-4 border-b border-gray-200">
-          <label class="block text-xs font-semibold text-gray-500 uppercase mb-2">
-            Новый чат
-          </label>
-          <div class="flex gap-2">
-            <input
-              type="text"
-              placeholder="Формат: 79991112233"
-              class="flex-1 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-emerald-500"
-              // Для теста можно жестко зашить номер в стейт или вводить руками:
-              onChange={(e) => setActiveChat(e.target.value)}
-            />
-          </div>
-        </div>
-
-        {/* Список активных чатов */}
-        <div class="flex-1 overflow-y-auto">
-          {activeChat && (
-            <div class="p-4 bg-emerald-50 border-l-4 border-emerald-500 cursor-pointer">
-              <p class="font-semibold">+{activeChat}</p>
-              <p class="text-xs text-gray-500 truncate">Активный диалог</p>
-            </div>
-          )}
-        </div>
-      </div>
+    <div className="flex h-screen bg-[#f0f2f5] text-gray-800 font-sans">
+      <Sidebar
+        activeChat={activeChat}
+        setActiveChat={setActiveChat}
+        handleLogout={handleLogout}
+      ></Sidebar>
 
       {/* ПРАВАЯ ПАНЕЛЬ: Окно переписки */}
       <div class="w-2/3 flex flex-col h-full bg-[#efeae2] relative">
@@ -216,7 +184,7 @@ function Chat() {
             </form>
           </>
         ) : (
-          // Заглушка, если чат еще не выбран/не создан
+          // если чат еще не выбран/не создан
           <div class="m-auto text-center text-gray-500">
             <p class="text-lg font-medium">Выберите или создайте чат слева</p>
             <p class="text-sm">
