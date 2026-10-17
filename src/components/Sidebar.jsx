@@ -1,10 +1,10 @@
 import React from "react";
-export default function  Sidebar({ activeChat, setActiveChat, handleLogout }){
- return (
+export default function Sidebar({ activeChat, setActiveChat, handleLogout }) {
+  return (
     <div className="w-1/3 bg-white border-r border-gray-300 flex flex-col h-full">
       {/* Шапка с логотипом и кнопкой */}
       <div className="p-4 bg-[#f0f2f5] border-b border-gray-300 flex justify-between items-center">
-        <span className="font-bold text-lg text-emerald-700">MAX Chat</span>
+        <span className="font-bold text-lg text-emerald-700">Web Chat</span>
         <button
           onClick={handleLogout}
           className="bg-red-500 text-white px-3 py-1.5 text-sm rounded hover:bg-red-600 transition font-medium"

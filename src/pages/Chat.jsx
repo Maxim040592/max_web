@@ -13,7 +13,6 @@ function Chat() {
 
   const { idInstance, apiToken } = credentials || {};
 
-  // Эффект Long Polling
   useEffect(() => {
     // Если ключей нет, вообще ничего не делаем внутри эффекта
     if (!idInstance || !apiToken) return;
@@ -87,7 +86,7 @@ function Chat() {
     return <Navigate to="/login" replace />;
   }
 
-  // 3. Функция отправки сообщения
+  // Функция отправки сообщения
   const handleSendMessage = async (e) => {
     e.preventDefault();
     if (!inputText.trim() || !activeChat) return;
