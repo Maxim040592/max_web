@@ -26,7 +26,7 @@ function Auth() {
         // Перенаправляем пользователя на главную страницу (в чат)
         navigate("/");
       } else {
-        setError("Инстанс не авторизован в Max");
+        setError("Инстанс не авторизован в Max/Watsap/Telegram");
       }
     } catch (err) {
       setError("Ошибка авторизации. Проверьте введенные данные.");
@@ -34,46 +34,50 @@ function Auth() {
   };
   return (
     <div
-      class="bg-linear-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% w-full h-full"
+      className="flex flex-col h-full bg-[#efeae2] relative"
       data-block="background-fon"
     >
       <div
-        class="flex justify-center items-center min-h-screen"
+        className="flex justify-center items-center min-h-screen"
         data-block="main block-content"
       >
         <div
-          class="w-1/4 h-140 border p-12 flex flex-col justify-center"
+          className="w-1/4 h-100 p-12 flex flex-col justify-center bg-[#efeae8] shadow-md"
           data-block="block-content"
         >
-          <h1 class=" pb-10">Авторизация</h1>
+          <span className="font-bold text-lg text-emerald-700  mb-8 text-center">
+            Авторизация
+          </span>
           <form onSubmit={handleLogin}>
-            <div class="flex flex-col pb-5" data-block="input block-idInstance">
-              <label from="idInstance">idInstance</label>
+            <div
+              className="flex flex-col pb-5"
+              data-block="input block-idInstance"
+            >
               <input
                 type="text"
-                class="w-1/2  border"
-                id="idInstance"
-                name="idInstance"
+                placeholder="idInstance..."
                 value={idInstance}
                 onChange={(e) => setIdInstance(e.target.value)}
-              ></input>
+                className="flex-1 border border-transparent rounded-lg px-4 py-2.5 bg-white text-sm focus:outline-none shadow-sm"
+              />
             </div>
             <div
-              class="pb-5 flex flex-col"
+              className="pb-5 flex flex-col"
               data-block="input block-apiTokenInstance"
             >
-              <label from="apiTokenInstance">apiTokenInstance</label>
               <input
                 type="password"
-                name="apiTokenInstance"
-                class="w-1/2  border"
-                id="apiTokenInstance"
+                placeholder="apiTokenInstance..."
                 value={apiToken}
                 onChange={(e) => setApiToken(e.target.value)}
-              ></input>
+                className="flex-1 border border-transparent rounded-lg px-4 py-2.5 bg-white text-sm focus:outline-none shadow-sm"
+              />
             </div>
-            {error && <p class="text-red-500 text-sm">{error}</p>}
-            <button type="submit" class="border w-25">
+            {error && <p className="text-red-500 text-sm">{error}</p>}
+            <button
+              type="submit"
+              className="bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg px-5 py-2.5 text-sm font-medium shadow-sm transition-colors"
+            >
               Войти
             </button>
           </form>
