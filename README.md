@@ -1,16 +1,74 @@
-# React + Vite
+# Web Chat — Тестовое задание (Фронтенд разработчик React)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Интерфейс для отправки и получения сообщений в мессенджере WhatsApp с использованием сервиса **GREEN-API**.
 
-Currently, two official plugins are available:
+## Ссылки
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Демо-версия в Интернете (Деплой):**
 
-## React Compiler
+1. https://max-web-fawn.vercel.app - работает только с vpn
+2.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Связаться со мной (Telegram):** @Maxim_m92
 
-## Expanding the ESLint configuration
+## Стек технологий
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Framework:** React 18+ (сборщик Vite)
+- **Routing:** React Router v6
+- **Styling:** Tailwind CSS
+- **HTTP Client:** Axios (работа с GREEN-API)
+
+---
+
+## Инструкция по локальному запуску
+
+Для запуска проекта на вашем компьютере должны быть установлены **Node.js** (рекомендуемая версия 18 или выше) и менеджер пакетов **npm**.
+
+### Шаг 1. Клонирование репозитория
+
+Склонируйте проект к себе на локальный компьютер с помощью Git:
+
+```bash
+git clone https://github.com/Maxim040592/max_web.git
+cd max_web
+```
+
+### Шаг 2. Установка зависимостей
+
+Установите все необходимые библиотеки и пакеты, прописанные в проекте:
+
+```bash
+npm install
+```
+
+### Шаг 3. Запуск проекта в режиме разработки
+
+Запустите локальный сервер разработки:
+
+```bash
+npm run dev
+```
+
+После запуска консоль выдаст локальный адрес (обычно `http://localhost:5173/`). Откройте эту ссылку в вашем браузере.
+
+---
+
+## Как протестировать приложение
+
+1. После открытия приложения вы попадете на страницу авторизации.
+2. Введите ваши данные из личного кабинета GREEN-API: `idInstance` и `apiTokenInstance`.
+3. Нажмите кнопку **Войти**. Приложение сделает проверочный запрос метода `getStateInstance` и, если инстанс авторизован, перенаправит вас в чат.
+4. Для создания чата в левой панели введите номер телефона получателя в формате `7XXXXXXXXXX`.
+5. **Важно:** Поскольку на бесплатном тарифе "Разработчик" действует ограничение на количество уникальных чатов (3 часа в месяц), вы можете протестировать приложение, **отправив сообщение самому себе** (введите в поле номера телефона свой собственный номер, к которому привязан инстанс). В общем не более 3х чатов
+
+---
+
+## Архитектура и структура проекта
+
+Проект декомпозирован на независимые компоненты и кастомные хуки для разделения логики и отображения:
+
+- `src/pages/` — Страницы авторизации (`Auth.jsx`) и чата (`Chat.jsx`).
+- `src/components/` — Разделенные компоненты интерфейса: боковая панель (`Sidebar.jsx`) и окно сообщений (`ChatWindow.jsx`).
+- `src/hooks/` — Кастомный хук `useWhatsApp.js`, в который полностью инкапсулирована логика работы с API (Long Polling, отправка сообщений и управление кэшем сообщений).
+- `localStorage` — Используется для сохранения сессии авторизации при обновлении страницы.
+- Не делал храние чатов в тот же самый `localStorage`. чат пересоздается если ввести новый контакт.
